@@ -8,6 +8,11 @@ export default class Comment extends React.Component {
     this.state = {
       isAbusive: false
     };
+
+    // Pre-bind functions with this
+    // Prevents garbage bound function creation on-render
+    this._handleDelete = this._handleDelete.bind(this);
+    this._toggleAbuse = this._toggleAbuse.bind(this);
   }
 
   render() {
@@ -29,10 +34,10 @@ export default class Comment extends React.Component {
         <p className="comment-body">{commentBody}</p>
 
         <div className="comment-actions">
-          <CommentConfirmation onConfirm={this._handleDelete.bind(this)} >
+          <CommentConfirmation onConfirm={this._handleDelete} >
             Delete Comment?
           </CommentConfirmation>
-          <CommentConfirmation onConfirm={this._toggleAbuse.bind(this)} >
+          <CommentConfirmation onConfirm={this._toggleAbuse} >
             Report as Abuse
           </CommentConfirmation>
         </div>

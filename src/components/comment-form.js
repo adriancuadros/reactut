@@ -6,6 +6,8 @@ export default class CommentForm extends React.Component {
     this.state = {
       characters: 0
     };
+    // Pre-bind functions
+    this._getCharacterCount = this._getCharacterCount.bind(this);
   }
 
   render() {
@@ -14,7 +16,7 @@ export default class CommentForm extends React.Component {
         <label>New comment</label>
         <div className="comment-form-fields">
           <input placeholder="Name:" ref={c => this._author = c} />
-          <textarea placeholder="Comment:" ref={c => this._body = c} onChange={this._getCharacterCount.bind(this)}></textarea>
+          <textarea placeholder="Comment:" ref={c => this._body = c} onChange={this._getCharacterCount}></textarea>
         </div>
         <p>{this.state.characters} characters</p>
         <div className="comment-form-actions">

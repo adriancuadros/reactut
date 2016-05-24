@@ -13,6 +13,9 @@ export default class CommentBox extends React.Component {
       showComments: false,
       comments: []
     };
+
+    // Pre-bind functions
+    this._deleteComment = this._deleteComment.bind(this);
   }
 
   componentWillMount() {
@@ -57,11 +60,8 @@ export default class CommentBox extends React.Component {
   _getComments() {
     return this.state.comments.map((comment) => {
       return <Comment
-               id={comment.id}
-               author={comment.author}
-               body={comment.body}
-               avatarUrl={comment.avatarUrl}
-               onDelete={this._deleteComment.bind(this)}
+               {...comment}
+               onDelete={this._deleteComment}
                key={comment.id} />
     });
   }
